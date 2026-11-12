@@ -1,0 +1,88 @@
+/* =========================================================
+   Home — fixed 100vh stage over the fluid
+   ========================================================= */
+body.home { height: 100vh; overflow: hidden; }
+.home .page { height: 100vh; }
+
+/* intro: everything except fluid + headline waits */
+.home .header, .home .ind-list, .home .cta-pill, .home .hero__label, .home .m-bar { opacity: 0; transition: opacity 1s var(--ease); }
+.home.is-ready .header, .home.is-ready .ind-list, .home.is-ready .cta-pill, .home.is-ready .m-bar { opacity: 1; }
+.home.is-ready .hero__label { opacity: 1; transition-delay: .5s; }
+
+.hero { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -46%); text-align: center; width: 100%; padding: 0 20px; transition: filter .6s var(--ease), opacity .6s var(--ease); }
+.hero__label { display: inline-flex; gap: 6px; font-size: 10px; font-weight: 500; line-height: 16px; letter-spacing: var(--tr-sm); margin-bottom: 30px; }
+.hero__label .dim { opacity: .5; }
+.hero__title { font-family: var(--mono); font-size: 52px; font-weight: 300; line-height: 62.4px; }
+.hero__title { word-spacing: -.32em; }
+body.is-focus .hero { filter: blur(10px); opacity: .25; }
+.home.is-focus .cta-pill { opacity: 0; transition-duration: .4s; }
+
+/* industry list */
+.ind-list { position: absolute; left: var(--pad); bottom: 40px; z-index: 5; }
+.ind-list a { display: flex; align-items: center; gap: 0; height: 40px; font-size: 10px; font-weight: 600; line-height: 32px; letter-spacing: var(--tr-sm); text-transform: uppercase; }
+.ind-list .circ { width: 0; opacity: 0; border-width: 0; transition: width .35s var(--ease), opacity .35s, border-width .35s, margin .35s var(--ease); }
+.ind-list a .lbl-view { display: none; }
+.ind-list a:hover .circ, .ind-list a:focus-visible .circ { width: 24px; opacity: 1; border-width: 1px; margin-right: 10px; }
+.ind-list a:hover .lbl-name, .ind-list a:focus-visible .lbl-name { display: none; }
+.ind-list a:hover .lbl-view, .ind-list a:focus-visible .lbl-view { display: inline; }
+
+/* CTA pill */
+.cta-pill { position: absolute; right: var(--pad); bottom: 40px; height: 34px; padding: 0 16px; display: inline-flex; align-items: center; border: 1px solid #fff; border-radius: 2rem; font-size: 11px; backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); transition: background .4s var(--ease), color .4s var(--ease), opacity 1s; z-index: 5; }
+.cta-pill:hover { background: #fff; color: #000; }
+
+/* industry hover panels */
+.ipanel { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.ipanel > * { position: absolute; opacity: 0; transform: translateY(14px); transition: opacity .5s var(--ease), transform .7s var(--ease-out); }
+.ipanel.is-on > * { opacity: 1; transform: none; }
+.ipanel.is-on > *:nth-child(2) { transition-delay: .06s; } .ipanel.is-on > *:nth-child(3) { transition-delay: .12s; } .ipanel.is-on > *:nth-child(4) { transition-delay: .18s; }
+.ipanel__title { font-family: var(--mono); font-size: 48px; font-weight: 400; line-height: 72px; max-width: 500px; }
+.ipanel__img { overflow: hidden; }
+.ipanel__img img { width: 100%; height: 100%; object-fit: cover; }
+.ipanel__kw { font-family: var(--mono); font-size: 14px; line-height: 20px; letter-spacing: 1.4px; max-width: 320px; }
+.ipanel__txt { font-size: 14px; line-height: 20px; max-width: 372px; }
+
+/* layout A — AI */
+.ipanel--a .ipanel__title { left: 23.06vw; top: 30vh; }
+.ipanel--a .ipanel__img { left: 66.5vw; top: 13.3vh; width: 29.2vw; height: 35vh; }
+.ipanel--a .ipanel__kw { left: 67.1vw; top: 73.9vh; }
+.ipanel--a .ipanel__txt { left: 65.1vw; top: 80.5vh; }
+/* layout B — commerce */
+.ipanel--b .ipanel__img { left: 23.3vw; top: 13.6vh; width: 32.9vw; height: 35vh; }
+.ipanel--b .ipanel__title { left: 64.4vw; top: 62vh; }
+.ipanel--b .ipanel__kw { left: 35.4vw; top: 72vh; }
+.ipanel--b .ipanel__txt { left: 30.6vw; top: 78vh; }
+/* layout C — mobile */
+.ipanel--c .ipanel__kw { left: 64.2vw; top: 24.6vh; }
+.ipanel--c .ipanel__txt { left: 65vw; top: 33.3vh; }
+.ipanel--c .ipanel__title { left: 34.4vw; top: 62vh; }
+.ipanel--c .ipanel__img { left: 70vw; top: 61.3vh; width: 22vw; height: 38.7vh; }
+/* layout D — real estate */
+.ipanel--d .ipanel__kw { left: 29.8vw; top: 24.6vh; }
+.ipanel--d .ipanel__txt { left: 29.8vw; top: 33.3vh; }
+.ipanel--d .ipanel__title { left: 64.4vw; top: 42vh; }
+.ipanel--d .ipanel__img { left: 28.75vw; top: 61.3vh; width: 21.7vw; height: 35vh; }
+
+/* mobile bottom bar */
+.m-bar { display: none; }
+.m-grid { display: none; }
+
+@media (max-width: 767px) {
+  .ind-list, .cta-pill, .ipanel { display: none; }
+  .hero { transform: translate(-50%, -30%); }
+  .hero__title { font-size: 34px; line-height: 40px; }
+  .hero__label { margin-bottom: 26px; }
+  .m-bar { display: flex; position: absolute; left: 20px; right: 20px; bottom: 48px; justify-content: space-between; align-items: center; z-index: 6; }
+  .m-pill { height: 38px; padding: 0 18px; border: 1px solid #fff; border-radius: 2rem; display: inline-flex; align-items: center; gap: 12px; font-family: var(--mono); font-size: 12px; backdrop-filter: blur(4px); }
+  .m-pill svg { width: 14px; transition: transform .4s var(--ease); }
+  body.show-ind .m-pill svg { transform: rotate(180deg); }
+  .m-help { width: 40px; height: 40px; border: 1px solid #fff; border-radius: 50%; display: grid; place-items: center; transition: opacity .4s; }
+  .m-help svg { width: 16px; }
+  body.show-ind .m-help { opacity: 0; pointer-events: none; }
+  .m-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; position: absolute; left: 20px; right: 20px; top: 50%; transform: translateY(-60%); z-index: 6; pointer-events: none; }
+  .m-grid a { height: 94px; border: 1px solid rgba(255,255,255,.3); display: grid; place-items: center; text-align: center; padding: 10px; font-size: 11px; font-weight: 600; letter-spacing: var(--tr-sm); line-height: 18px; text-transform: uppercase; opacity: 0; transform: translateY(10px); transition: opacity .5s, transform .6s var(--ease-out), background .3s; background: rgba(0,0,0,.15); }
+  body.show-ind .m-grid { pointer-events: auto; }
+  body.show-ind .m-grid a { opacity: 1; transform: none; }
+  body.show-ind .m-grid a:nth-child(2) { transition-delay: .06s; } body.show-ind .m-grid a:nth-child(3) { transition-delay: .12s; } body.show-ind .m-grid a:nth-child(4) { transition-delay: .18s; }
+  body.show-ind .hero { opacity: 0; filter: blur(10px); }
+  body.show-ind .fluid { filter: blur(18px) brightness(.45); }
+}
